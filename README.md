@@ -1,1 +1,5 @@
-# scrabble-backend
+
+
+
+References
+[a link](https://docs.python.org/3/library/sqlite3.html)
