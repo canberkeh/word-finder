@@ -18,10 +18,11 @@ app.config['SWAGGER'] = {
 template = {
     "info": {
         "title": "Word Finder API",
-        "description": "Word Finder API to find desired word with given length",
+        "description": "Word Finder API to find desired word with given length and other options.",
         "contact": {
             "responsibleDeveloper": "canberkeh",
-            "email": "canberkehorozal@gmail.com"
+            "email": "canberkehorozal@gmail.com",
+            "url": "github.com/canberkeh"
         },
         "version": "1.0.0"
     },

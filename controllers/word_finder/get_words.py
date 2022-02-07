@@ -1,3 +1,4 @@
+import json
 from flask import request
 from controllers import app
 from services.base_service import BaseService
@@ -20,6 +21,8 @@ def get_words():
           required:
             - length
             - word
+            - include
+            - exclude
           properties:
             length:
               type: string
@@ -29,6 +32,16 @@ def get_words():
               type: string
               description: Word itself.
               example: s lam
+            include:
+              type: list or None
+              description: list of letters that should be in.
+              default: None
+              example: ["a","s"]
+            exclude:
+              type: list or None
+              description: list of letters that must not be in.
+              default: None
+              example: ["c", "z"]
     responses:
         200:
             description: If word list can be found. Returns it.
@@ -53,13 +66,18 @@ def get_words():
                       type: list
                       example: ["selam", "salam"]
     """
-    request_body = check_and_get_parameters(["word", "length"],
+    request_body = check_and_get_parameters(["word", "length","include", "exclude"],
                                             request.get_json())
     base_service = BaseService()
-    base_service.build_query_params(word=request_body["word"], length=request_body["length"])
-    result_list = base_service.execute_query_fetchall()
+    base_service.build_query_params(word=request_body["word"],
+                                    length=request_body["length"])
+    character_check = {
+      "include" : request_body["include"],
+      "exclude" : request_body["exclude"]
+    }
+    result_list = base_service.execute_query_fetchall(**character_check)
 
-    return response_success(result_list=result_list)
+    return response_success(result_list=result_list).get_json()
 
 #TODO : ADD TRY EXCEPT
 # TODO : ADD CONTROL TO IF RESULT IF SUCCESS
