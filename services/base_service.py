@@ -11,7 +11,7 @@ class BaseService(object):
         self.query = ""
 
     def build_query(self, length: str, word: str) -> None:
-        self.query = "SELECT madde FROM madde WHERE LENGTH(madde)={0} and madde LIKE '%{1}%'".format(length, word)
+        self.query = "SELECT madde FROM madde WHERE LENGTH(madde)={0} and madde LIKE '%{1}%' order by madde".format(length, word)
 
     def build_query_params(self, length: str, word: str) -> None:
         generated_word = ""

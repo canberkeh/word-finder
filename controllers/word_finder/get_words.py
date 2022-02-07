@@ -4,13 +4,13 @@ from services.base_service import BaseService
 from utilities.utilities import check_and_get_parameters, response_success
 
 
-@app.route('/word_finder/get_word', methods=['POST'])
-def get_word():
+@app.route('/word_finder/get_words', methods=['POST'])
+def get_words():
     """
     GET WORDS ADD DESCRIPTION
     ---
     tags:
-        - get_word
+        - get_words
     parameters:
       - in: body
         name: body
