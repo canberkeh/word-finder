@@ -32,7 +32,8 @@ template = {
         "application/json",
     ],
     "schemes": [
-        "http"
+        "http",
+        "https"
     ]
 }
 
