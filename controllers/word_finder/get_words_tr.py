@@ -1,12 +1,20 @@
+import os
 import json
 from flask import request
 from controllers import app
 from services.base_service import BaseService
 from utilities.exceptions import ServiceError
 from utilities.utilities import check_and_get_parameters, response_success
+from flask_basicauth import BasicAuth
+
+
+app.config['BASIC_AUTH_USERNAME'] = os.getenv("USER")
+app.config['BASIC_AUTH_PASSWORD'] = os.getenv("PASS")
+basic_auth = BasicAuth(app)
 
 
 @app.route('/word_finder/get_words', methods=['POST'])
+@basic_auth.required
 def get_words():
     """
     GET WORD SUGGESTIONS LIST

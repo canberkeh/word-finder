@@ -1,15 +1,9 @@
-import os
 from pathlib import Path
 from flask import Flask
-from flask_basicauth import BasicAuth
 from flasgger import Swagger
 
-app = Flask(__name__, template_folder=Path('..') / 'templates', static_folder=Path('..') / 'static')
+app = Flask(__name__)
 
-app.config['BASIC_AUTH_USERNAME'] = os.getenv("USER")
-app.config['BASIC_AUTH_PASSWORD'] = os.getenv("PASS")
-app.config['BASIC_AUTH_FORCE'] = True
-basic_auth = BasicAuth(app)
 
 app.config['SWAGGER'] = {
     'title': 'Word Finder API',
@@ -40,6 +34,5 @@ template = {
 }
 
 swagger = Swagger(app, template=template)
-
 
 from controllers.word_finder import *
