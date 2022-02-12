@@ -1,9 +1,10 @@
 import os
+from pathlib import Path
 from flask import Flask
 from flask_basicauth import BasicAuth
 from flasgger import Swagger
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder=Path('..') / 'templates', static_folder=Path('..') / 'static')
 
 app.config['BASIC_AUTH_USERNAME'] = os.getenv("USER")
 app.config['BASIC_AUTH_PASSWORD'] = os.getenv("PASS")

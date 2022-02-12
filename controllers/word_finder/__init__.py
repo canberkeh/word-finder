@@ -7,4 +7,4 @@ __all__ = [basename(f)[:-3] for f in modules if isfile(f) and not f.endswith('__
 
 @app.route('/word_finder')
 def service_word_finder():
-    return 'Word Finder service - OK'
+    return 'Word Finder TR service - 200'
