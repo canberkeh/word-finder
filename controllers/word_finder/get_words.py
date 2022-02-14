@@ -76,10 +76,9 @@ def get_words():
                   description: True if successful, False otherwise.
                   example: True
                 result:
-                  description: result dictionary
-                  properties:
-                    type: list
-                    example: ["selam", "salam"]
+                  description: result list
+                  type: list
+                  example: ["selam", "salam"]
     """
     try:
       request_body = check_and_get_parameters(["language", "word", "length","include", "exclude"],
