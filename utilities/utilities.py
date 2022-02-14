@@ -1,4 +1,4 @@
-from flask import jsonify
+from utilities.exceptions import ServiceError
 
 
 def check_and_get_parameters(parameter_names: [str], json_body) -> dict:
@@ -14,11 +14,5 @@ def check_and_get_parameters(parameter_names: [str], json_body) -> dict:
         if parameter_name in json_body:
             result_dict.update({parameter_name: json_body[parameter_name]})
         else:
-            print("error! ")
+            raise ServiceError("Can not get parameters. Service failed!")
     return result_dict
-
-def response_success(**kwargs):
-    """simplifier for successful response object preparation"""
-    return jsonify(success=True, message="successful", error_code=0, result=kwargs)
-
-#TODO : ADD EXCEPTION TO check_and_get_parameters

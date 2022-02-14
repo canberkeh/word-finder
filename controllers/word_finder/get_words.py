@@ -4,7 +4,7 @@ from flask import request
 from controllers import app
 from services.base_service import BaseService
 from utilities.exceptions import ServiceError
-from utilities.utilities import check_and_get_parameters, response_success
+from utilities.utilities import check_and_get_parameters
 from flask_basicauth import BasicAuth
 from flask_cors import CORS
 
@@ -78,9 +78,8 @@ def get_words():
                 result:
                   description: result dictionary
                   properties:
-                    words:
-                      type: list
-                      example: ["selam", "salam"]
+                    type: list
+                    example: ["selam", "salam"]
     """
     try:
       request_body = check_and_get_parameters(["language", "word", "length","include", "exclude"],
@@ -102,4 +101,15 @@ def get_words():
     except:
       raise ServiceError("Service failed to execute and return data.")
 
-    return response_success(result_list=result_list).get_json()
+    if result_list:
+      result_set = {"error_code": 0,
+                    "message": "successful",
+                    "success": True,
+                    "result": result_list["result"]}
+      return json.dumps(result_set, indent=4)
+    else:
+      result_set = {"error_code": -31,
+                    "message": "fail",
+                    "success": False,
+                    "result": []}
+      return json.dumps(result_set, indent=4)
