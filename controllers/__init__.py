@@ -1,10 +1,9 @@
 from pathlib import Path
 from flask import Flask
 from flasgger import Swagger
-from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+
 
 
 app.config['SWAGGER'] = {

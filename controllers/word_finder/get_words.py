@@ -6,11 +6,12 @@ from services.base_service import BaseService
 from utilities.exceptions import ServiceError
 from utilities.utilities import check_and_get_parameters, response_success
 from flask_basicauth import BasicAuth
-
+from flask_cors import CORS
 
 app.config['BASIC_AUTH_USERNAME'] = os.getenv("USER")
 app.config['BASIC_AUTH_PASSWORD'] = os.getenv("PASS")
 basic_auth = BasicAuth(app)
+CORS(app)
 
 
 @app.route('/word_finder/get_words', methods=['POST'])
