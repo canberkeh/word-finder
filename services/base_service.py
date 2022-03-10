@@ -1,4 +1,6 @@
 import sqlite3
+
+from pyrsistent import v
 from utilities.exceptions import DBCursorError, DatabaseConnectionError, QueryError
 
 
@@ -83,18 +85,22 @@ class BaseService(object):
         :param: length as str, word as str.
         """
         try:
-            self.query = "SELECT madde FROM madde WHERE LENGTH(madde)={0} and madde LIKE '%{1}%' order by madde".format(length, word)
+            if length == 0:
+                self.query = "SELECT madde FROM madde WHERE madde LIKE '%{0}%' order by madde".format(word)
+            else:
+                self.query = "SELECT madde FROM madde WHERE LENGTH(madde)={0} and madde LIKE '%{1}%' order by madde".format(length, word)
         except:
-            raise QueryError("Failed to fetch items. Check query parameters!")
-
-
+                    raise QueryError("Failed to fetch items. Check query parameters!")
     def build_query_en(self, length: str, word: str) -> None:
         """
         Builds query with given parameters. 
         :param: length as str, word as str.
         """
         try:
-            self.query = "SELECT word FROM entries WHERE LENGTH(word)={0} and word LIKE '%{1}%' order by word".format(length, word)
+            if length == 0:
+                self.query = "SELECT word FROM entries WHERE word LIKE '%{0}%' order by word".format(word)
+            else:
+                self.query = "SELECT word FROM entries WHERE LENGTH(word)={0} and word LIKE '%{1}%' order by word".format(length, word)
         except:
             raise QueryError("Failed to fetch items. Check query parameters!")
 
