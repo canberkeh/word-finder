@@ -55,7 +55,7 @@ class BaseService(object):
         if character_check["exclude"]:
             result_set_json = self.exclude_control(character_check["exclude"], result_set_json)
 
-        result_set_json["result"] = [word.upper() for word in result_set_json["result"] if " " not in word]
+        result_set_json["result"] = [word.upper() for word in result_set_json["result"] if (" " not in word) and (len(word) > 1)]
         return result_set_json
 
 
