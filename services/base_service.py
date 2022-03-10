@@ -1,3 +1,4 @@
+from ast import Pass
 import sqlite3
 
 from pyrsistent import v
@@ -53,8 +54,8 @@ class BaseService(object):
         
         if character_check["exclude"]:
             result_set_json = self.exclude_control(character_check["exclude"], result_set_json)
-        result_set_json["result"] = list(map(lambda x: x.upper(), result_set_json["result"]))
 
+        result_set_json["result"] = [word.upper() for word in result_set_json["result"] if " " not in word]
         return result_set_json
 
 

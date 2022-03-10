@@ -1,5 +1,6 @@
 import os
 import json
+from unittest import result
 from flask import request
 from controllers import app
 from services.base_service import BaseService
@@ -42,7 +43,7 @@ def get_words():
               example: tr
             length:
               type: string
-              description: length of the word.
+              description: length of the word. No length if value is 0 or none.
               example: 5
             word:
               type: string
