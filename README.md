@@ -10,13 +10,15 @@ guidance check the related sections of this document. More information about usa
 ### Requirements
 Requirements are in requirements.txt file. Installs requeirements when docker is building. If you don't want to dockerize it, i higtly recommend using venv and then 
 use command below.
-    ```sh
+
+    ```
     $ pip install -r requirements.txt
     ```
 
 ### Installation And Run
 System is built on docker. If you want to dockerize it, just follow the command below.
-    ```sh
+
+    ```
     $ docker-compose up --build
     ```
 Otherwise if you want to run locally, just run app.py
