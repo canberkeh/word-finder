@@ -113,21 +113,9 @@ class BaseService(object):
                 result_set_json as dict
         :return: result_set_json as dict
         """
-        # TODO : Which faster algorithm can be used here?
 
-        # hash_map = {}
-        # include_list = []
-        # for char in char_list:
-        #     for word in result_set_json["result"]:
-        #         if char in word.lower() and word not in hash_map.keys():
-        #             hash_map[word] = 1
-        #         elif char in word.lower() and word in hash_map.keys():
-        #             hash_map[word] += 1
-        # for word, counter in hash_map.items():
-        #     if counter == len(char_list):
-        #         include_list.append(word)
         include_list = []
-        char_list_set = set(char_list)
+        char_list_set = set(char_list.lower())
         for word in result_set_json["result"]:
             set_word = set(word)
             if len(char_list_set.intersection(set_word)) == len(char_list):
