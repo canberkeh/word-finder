@@ -115,7 +115,7 @@ class BaseService(object):
         """
 
         include_list = []
-        char_list_set = set(char_list.lower())
+        char_list_set = set([char.lower() for char in char_list])
         for word in result_set_json["result"]:
             set_word = set(word)
             if len(char_list_set.intersection(set_word)) == len(char_list):
